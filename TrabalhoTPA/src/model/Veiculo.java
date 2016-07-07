@@ -7,27 +7,27 @@ import java.util.Date;
 
 /*
     COD
+    00 CARRO
     01 MOTO
-    02 CARRO
+    
 */
 public class Veiculo {
     
 
     
-    private final int cod;
+    private final int tipo;
     private final String placa;
     private  String entrada;
     private int posLinha, posColuna;
 
-    public Veiculo(int c ,String p, String entrada){
-        this.cod = c;
+    public Veiculo(int t ,String p, String entrada){
+        this.tipo = t;
         this.placa = p;
         this.entrada = entrada;
     }
-    
-    
-    public int getCod(){
-        return cod;
+   
+    public int getTipo(){
+        return tipo;
     }
     public String getPlaca(){
         return placa;
