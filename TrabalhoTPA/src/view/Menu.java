@@ -23,7 +23,7 @@ import model.Funcionarios;
 public class Menu {
     
     public void menuPrincipal(Empresa emp){
-       int op;
+       int op;  
        Scanner s = new Scanner(System.in);
        boolean flag = true;
         do{
@@ -88,9 +88,9 @@ public class Menu {
         
         
         do{
-            System.out.println("1 - mostra vagas disponiveis. ");
-            System.out.println("2 - Registra a entrada de um novo carro. ");
-            System.out.println("3 - Resgistra saida de um carro. ");
+            System.out.println("1 - Mostrar vagas disponiveis. ");
+            System.out.println("2 - Registrar a entrada de um novo carro. ");
+            System.out.println("3 - Resgistrar saida de um carro. ");
             System.out.println("4 - Encerrar o dia. ");
             System.out.print("Escolha uma opção: ");
             op = s.nextInt();

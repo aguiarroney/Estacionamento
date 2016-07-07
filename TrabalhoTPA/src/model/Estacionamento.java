@@ -50,10 +50,9 @@ public class Estacionamento {
         return vagas[i][k];
     }
     
-    public boolean setVaga(int i, int k){
+    public void setVaga(int i, int k){
         vagas[i][k]= true;
-        
-        return true;
+        this.numVagas -=1;
     }
     
     public void imprimeVagas(){

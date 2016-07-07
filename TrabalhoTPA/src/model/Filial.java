@@ -24,37 +24,50 @@ public class Filial {
     private void indicaFilial() {
          
     }
+   
+       
     public void indicaVaga(Veiculo v){
         boolean flag = false;
         int op=0;
+        int aux=10000; // usado para 
+        int auxLinha = 0;
+        int auxColuna = 0;
+        
         //System.out.println("As vagas disponiveis sao:");
-        for(int i=0;i< estacionamento.getLinha();i++){
-            for(int k=0; k<estacionamento.getColuna();k++){
-                if(estacionamento.getVagas(i, k) == false){
-                    //System.out.print(" ["+i+"]["+k+"] |");
-                    v.setPosColuna(k);
-                    v.setPosLinha(i);
-                    flag = estacionamento.setVaga(i, k);
-                    break;
+        // Percorre todo o estacionamento e procura a vaga mais próxima da entrada/saída
+        for( int i=0;i< estacionamento.getLinha();i++){
+            for( int k = v.getTipo(); k<estacionamento.getColuna();k = k+2){
+                if(estacionamento.getVagas(i, k) == false)
+                {
+                    if((i+k)<aux)//Verifica se a vaga encontrada é mais próxima do que a que já tem
+                    {
+                        aux = i + k;
+                        auxLinha = i;
+                        auxColuna = k;
+                        flag = true;
+                    }
                 }
-                
             }
-            if(flag == true){
-                    break;
-            }else{
-                indicaFilial();
-                System.out.println("voce deseja ir para alguma outra filial? \n1-sim.\n2- nao");
+        }
+        if(flag == false)// Nao encontrou nenhuma vaga
+        {
+                System.out.println("Voce deseja ir para alguma outra filial? \n1-Sim.\n2- Nao");
                 Scanner s = new Scanner(System.in);
                 op = s.nextInt();
-                switch(op){
+                switch(op)
+                {
                     case 1:
-                        //rezervaVaga()
-                    
+                        indicaFilial();    
                     case 2:
                         System.out.println("Obrigado pela preferencia!");
                         break;
                 }
-            } 
+        }
+        else
+        {    
+            v.setPosColuna(auxColuna);
+            v.setPosLinha(auxLinha);
+            estacionamento.setVaga(auxLinha, auxColuna); //rever
         }
     }
     
@@ -66,7 +79,7 @@ public class Filial {
         
         Scanner s = new Scanner(System.in);
         Scanner s2 = new Scanner(System.in);
-        System.out.println("Digite:\n1 - moto.\n2 - carro.");
+        System.out.println("Digite:\n0 - Carro.\n1 - Moto.");
         int cod = s.nextInt();
         
         System.out.println("Digite a placa do veiculo:");
@@ -76,9 +89,9 @@ public class Filial {
         // adicona o veiculo q chegou no array de veiculos do estacionamento
         
         Veiculo v = new Veiculo(cod, placa,entrada);
-        System.out.println("criei carro");
+        System.out.println("Criei carro");
         indicaVaga(v);
-        System.out.println("indiquei vaga");
+        System.out.println("Indiquei vaga");
         estacionamento.adicionaVeiculo(v);
         System.out.println("Adicionei no array");
         //estacionamento.imprimeVagas();
